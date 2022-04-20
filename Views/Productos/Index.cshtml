@@ -1,0 +1,390 @@
+﻿@model IEnumerable<ProjectoAvance1.Models.Producto>
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<!-- HEADER -->
+<header class="container-fluid">
+    <div class="container">
+        <div class="row" id="header">
+            <div class="col-md-9">
+                <!-- CATEGORIES AND SEARCH -->
+                <div class="row">
+                    <!-- CATEGORIES BUTTONS -->
+                    <div class="col-md-4 backColor text-right" id="btnCategories">
+                        <p>
+                            CATEGORIAS
+                            <span class="pl-3">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <!-- CATEGORIES BUTTONS -->
+                    <div class="col-md-8 input-group pl-0" id="search">
+                        <input type="search" name="search" class="form-control" placeholder="Buscar......" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-default backColor">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <!-- CART -->
+                <div class="row">
+                    <div class="input-group" id="cart">
+                        <button class="btn btn-default backColor">
+                            <i class="fa fa-shopping-cart"></i>
+                        </button>
+                        <p class="w-50">TU CARRITO <span class="quantityCart"></span> <br> USD $ <span class="sumCart"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- CATEGORIES -->
+<div class="col-md-12 backColor" id="categories" style="display:none">
+    <div class="row mb-2">
+        @using (Html.BeginForm("Index", "Productos", FormMethod.Get, new { @class = "row w-100" }))
+        {
+            @foreach (var categoria in ViewBag.Categorias)
+            {
+                <div class="col-md-3 text-center">
+                    <h5 class="p-2">
+                        <a href="#" class="pixelCategories buscadorCat" name="buscadorCat" id="buscadorCat_@categoria.Id" catId="@categoria.Id">@categoria.NombreCategoria</a>
+                    </h5>
+                </div>
+            }
+            <button class="d-none" type="submit" value="" name="buscadorCat" id="buscadorCat">btn</button>
+        }
+
+    </div>
+</div>
+
+<!--PRODUCTS BAR -->
+<div class="container-fluid well well-sm barProducts">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-sm-6 col-xs-12 text-left">
+                <button class="btn btn-sm backColor" id="btnMostrarTodos"> TODOS </button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Ordenar Productos<span class="caret"></span></button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Más reciente</a></li>
+                        <li><a href="#">Más antiguos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12 organizeProducts text-right">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btnGrid backColor" id="btnGrid0">
+                        <i class="fa fa-th" aria-hidden="true"></i>
+                        <span class="col-xs-0 text-right"> GRID</span>
+                    </button>
+                    <button type="button" class="btn btn-default btnList" id="btnList0">
+                        <i class="fa fa-list" aria-hidden="true"></i>
+                        <span class="col-xs-0 text-right"> LIST</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--PRODUCTS LIST -->
+<div class="container-fluid products">
+    <div class="container">
+        <div class="row">
+            @if (!Model.Any())
+            {
+                <div class="col-xs-12 error404 text-center">
+                    <h1><small>¡Oops!</small></h1>
+                    <h2>Aun no hay productos en esta sección!</h2>
+                </div>
+            }
+            else
+            {
+                <ul class="grid0">
+                    @foreach (var producto in Model)
+                    {
+                        <li class="col-xs-12">
+                            <figure>
+                                <a href="#" class="pixelProduct">
+                                    <img src="@producto.Foto" class="img-fluid">
+                                </a>
+                            </figure>
+                            @producto.Id
+                            <h4>
+                                <small>
+                                    <a href="" class="pixelProduct">
+                                        @producto.Descripcion<br>
+                                        <span style="color:rgba(0,0,0,0)">-</span>
+                                        @if (producto.Nuevo != 0)
+                                        {
+                                            <span class="label label-warning fontSize">Nuevo</span>
+                                        }
+                                        @if (producto.Oferta != 0)
+                                        {
+                                            <span class="label label-warning fontSize">@producto.Descuento % OFF</span>
+                                        }
+                                    </a>
+                                </small>
+                            </h4>
+                            <div class="col-xs-6 price">
+                                @if (producto.Precio == 0)
+                                {
+                                    <h2><small>GRATIS</small></h2>
+                                }
+                                else
+                                {
+                                    if (producto.Oferta != 0)
+                                    {
+                                        <h2>
+                                            <small>
+                                                <strong class="offer"> USD $ @producto.Precio</strong>
+                                            </small>
+                                            <small>$ @producto.PrecioOferta</small>
+                                        </h2>
+                                    }
+                                    else
+                                    {
+                                        <h2><small>USD $ @producto.Precio</small></h2>
+                                    }
+                                }
+                            </div>
+                            <div class="col-xs-6 links">
+                                <div class="btn-group text-right">
+                                    <button type="button" class="btn btn-default btn-xs wishList" idProduct="@producto.Id" data - toggle="tooltip" title="Agregar a mi Lista de Deseos">
+                                        <i class="fa fa-heart"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-xs addCart " idProduct="@producto.Id" image="@producto.Foto" data-toggle="tooltip" titleProduct="@producto.Codigo" price="@producto.Precio" weight="@producto.Peso" title="Agregar a mi Carrito de Compras">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </button>
+                                    <a href="#" class="pixelProduct">
+                                        <button type="button" class="btn btn-default btn-xs" data - toggle="tooltip" title="Ver producto">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <ul class="list0" style="display:none">
+                    @foreach (var producto in Model)
+                    {
+                        <li class= "col-xs-12">
+                            <!-- ============================================ -->
+                            <div class= "col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                                <figure>
+                                    <a href = "#" class= "pixelProduct">
+                                        <img src = "@producto.Foto" class= "img-fluid">
+                                    </a>
+                                </figure>
+                            </div>
+                            <!-- ============================================ -->
+                            <div class= "col-lg-10 col-md-7 col-sm-8 col-xs-12">
+                                <h1>
+                                    <small>
+                                        <a href = "#" class= "pixelProduct">@producto.Codigo</a><br>
+                                        @if (producto.Nuevo != 0) {
+                                            <span class="label label-warning"> Nuevo </span>
+                                        }
+                                        @if (producto.Oferta != 0) {
+                                            <span class="label label-warning">@producto.Descuento % OFF</span>
+                                        }
+                                    </small>
+                                    </h1>
+                                <p class= "text-muted" > @producto.Descripcion</p>
+                            @if(producto.Precio == 0) {
+                                    <h2><small>GRATIS</small></h2>
+                            }else
+                            {
+                                if (producto.Oferta != 0)
+                                {
+                                        <h2>
+                                            <small>
+                                                <strong class= "offer" > USD $ @producto.Precio </strong>
+                                            </small>
+                                            <small>$ @producto.PrecioOferta </small></h2>
+                                }
+                                else
+                                {
+                                        <h2>
+                                            <small>USD $ @producto.Precio</small>
+                                            </h2>
+                                }
+                                <div class="col-xs-6 links">
+                                    <div class= "btn-group text-left">
+                                        <button type = "button" class= "btn btn-default btn-xs wishList" idProduct = "@producto.Id" data - toggle = "tooltip" title = "Agregar a mi Lista de Deseos">
+                                            <i class= "fa fa-heart"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-default btn-xs addCart " idProduct="@producto.Id" image="@producto.Foto" data-toggle="tooltip" titleProduct="@producto.Codigo" price="@producto.Precio" weight="@producto.Peso" title="Agregar a mi Carrito de Compras">
+                                            <i class= "fa fa-shopping-cart"></i>
+                                        </button>
+                                    <a href="#" class="pixelProduct">
+                                        <button type = "button" class= "btn btn-default btn-xs" data - toggle = "tooltip" title = "Ver producto">
+                                            <i class= "fa fa-eye"></i>
+                                        </button>
+                                    </a>
+                                    </div>
+                                </div>
+                            }
+                            </div>
+                            <div class= "col-xs-12" ><hr></div>
+                        </li>
+                     }
+                </ul>
+            }
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        //Filtrar Productos por Categoria
+        $(".buscadorCat").on('click', function () {
+            let catId = $(this).attr('catid');
+            $("#buscadorCat").val(catId);
+            $("#buscadorCat").click();
+        });
+
+        //Quitar Filtro de Categoria
+        $("#btnMostrarTodos").on('click', function () {
+            $("#buscadorCat").val();
+            $("#buscadorCat").click();
+        });
+
+        //Expandir Categorias
+        $("#btnCategories").on('click',function () {
+
+            if (window.matchMedia("(max-width:767px)").matches) {
+
+                $("#btnCategories").after($("#categories").slideToggle("fast"))
+
+            } else {
+
+                $("#header").after($("#categories").slideToggle("fast"))
+
+            }
+
+
+        })
+
+        /*=============================================
+        DISPLAY GRID OR LIST
+        =============================================*/
+        var btnList = $(".btnList");
+
+        for (var i = 0; i < btnList.length; i++) {
+
+            $("#btnGrid" + i).click(function () {
+
+                var number = $(this).attr("id").substr(-1);
+
+                $(".list" + number).hide();
+                $(".grid" + number).show();
+
+                $("#btnGrid" + number).addClass("backColor");
+                $("#btnList" + number).removeClass("backColor");
+            })
+
+            $("#btnList" + i).click(function () {
+
+                var number = $(this).attr("id").substr(-1);
+
+                $(".list" + number).show();
+                $(".grid" + number).hide();
+
+                $("#btnGrid" + number).removeClass("backColor");
+                $("#btnList" + number).addClass("backColor");
+            })
+        }
+
+        /*=======================================
+        =            CARROUSEL                  =
+        =======================================*/
+        //$(".flexslider").flexslider({
+        //    animation: "slide",
+        //    controlNav: true,
+        //    animationLoop: false,
+        //    slideshow: false,
+        //    itemWidth: 100,
+        //    itemMargin: 5
+        //});
+
+
+        //$(".flexslider ul li img").click(function () {
+
+        //    var captureIndex = $(this).attr("value");
+
+        //    $(".productInfo figure.visor img").hide();
+        //    $("#zoom" + captureIndex).show();
+        //})
+
+        /*=======================================
+        =            ZOOM EFFECT                =
+        =======================================*/
+        $(".productInfo figure.visor img").mouseover(function (event) {
+
+            var captureImg = $(this).attr("src");
+
+            $(".zoom img").attr("src", captureImg);
+            $(".zoom").fadeIn("fast");
+            $(".zoom").css({
+                "height": $(".visorImg").height() + "px",
+                "background": "#eee",
+                "width": "100%"
+            })
+        })
+
+        $(".productInfo figure.visor img").mouseout(function (event) {
+
+            $(".zoom").fadeOut("fast");
+        })
+
+        $(".productInfo figure.visor img").mousemove(function (event) {
+            var posX = event.offsetX;
+            var posY = event.offsetY;
+
+            $(".zoom img").css({
+                "margin-left": -posX + "px",
+                "margin-top": -posY + "px"
+            })
+        })
+
+        /*=======================================
+        =         COMMENTS HEIGHT               =
+        =======================================*/
+        $(".comments").css({
+            "height": $(".comments .heightComment").height() + "px",
+            "overflow": "hidden",
+            "margin-botton": "20px"
+        })
+
+        $("#seeMore").click(function (e) {
+
+            e.preventDefault();
+
+            if ($("#seeMore").html() == "VER MAS") {
+
+                $(".comments").css({ "overflow": "inherit" });
+                $("#seeMore").html("VER MENOS");
+
+            } else {
+
+                $(".comments").css({
+                    "height": $(".comments .heightComment").height() + "px",
+                    "overflow": "hidden",
+                    "margin-botton": "20px"
+                })
+                $("#seeMore").html("VER MAS");
+            }
+
+        })
+
+    </script>
+}

@@ -1,0 +1,196 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/*Back Color*/
+.backColor, .backColor a {
+    background: #e58025;
+    color: white;
+}
+
+/*NavBar*/
+nav .navbar-nav li a {
+    color: #e58025 !important;
+}
+
+nav .navbar-nav li a:hover {
+    color: white !important;
+}
+
+nav .navbar-nav li button {
+    color: #e58025 !important;
+}
+
+nav .navbar-nav li button:hover {
+    color: white !important;
+}
+
+/*Header de Categorias*/
+header #btnCategories {
+    margin: 20px 0px;
+}
+
+header #btnCategories p {
+    margin-bottom: 0px;
+    padding-top: 10px;
+}
+
+header #btnCategories p span {
+    cursor: pointer;
+}
+
+header #search {
+    margin: 20px 0;
+}
+
+header #search input {
+    padding: 19px;
+    border-radius: 0;
+}
+
+header #search button {
+    border: 1px solid silver;
+}
+
+header #cart {
+    margin: 20px 0;
+}
+
+header #cart button {
+    padding: 7px 10px;
+    border: 1px solid silver;
+}
+
+header #cart p {
+    padding: 2px;
+    border: 1px solid #aaa;
+    font-size: 10px;
+    margin: 0;
+}
+
+header #categories {
+    display: none;
+    margin-top: -10px;
+    margin-left: -15px;
+    position: relative;
+    /*padding-bottom: 20px;*/
+}
+
+header #categories h4 {
+    margin-top: 20px;
+    margin-bottom: -10px;
+}
+
+header #categories hr {
+    border: 1px solid rgba(255,255,255,.3);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/*Video banner*/
+#bgvid {
+    position: relative;
+    right: 0;
+    bottom: 0;
+    min-width: 50%;
+    min-height: 50%;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.banner {
+    padding-top: 20px;
+}
+
+/*Estilos Productos GRID*/
+
+.grid0 {
+    display:grid;
+    grid-auto-columns: max-content;
+    grid-auto-flow:dense;
+    grid-auto-rows: minmax(100px, auto);
+    grid-gap: 25px;
+    grid-template-columns: repeat(3, 1fr);
+    //--- JUST VISUAL STYLING BELOW margin: 60px auto;
+    max-width: 100%;
+}
+
+.featuredTitle h1 {
+    margin-top: -5px;
+}
+
+.featuredTitle button span {
+    margin-left: 5px;
+}
+
+.products ul li figure {
+    overflow: hidden;
+}
+
+.products ul li a img:hover {
+    transition: .3s all ease;
+    opacity: .8;
+    transform: scale(1.1,1.1);
+}
+
+.products ul li h4 small {
+    color: #777;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.products ul li h4 small a {
+    color: #777;
+}
+
+.products ul li div.price {
+    padding: 0;
+    margin-top: -10px;
+    padding-bottom: 20px;
+}
+
+.products ul li div.links {
+    padding: 0;
+    padding-bottom: 20px;
+}
+
+.products ul li div.links button {
+    margin: 2px;
+}
+
+.products ul li div.links button i {
+    color: #999;
+    font-size: 12px;
+}
+
+/*Estilos Productos LIST*/
+
+.products ul li h1 {
+    margin-top: -10px;
+}
+
+.products ul li h1 small {
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.products ul li h1 small a {
+    color: #777;
+}
+
+.offer {
+    text-decoration: line-through;
+    color: #ccc;
+    font-size: 15px;
+}
+
+.fontSize {
+    font-size: 11px;
+}

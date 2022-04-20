@@ -1,0 +1,50 @@
+﻿@model IList<ProjectoAvance1.Models.Categoria>
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+
+<!--VIDEO BANNER-->
+<div class="banner">
+    <video autoplay="autoplay" id="bgvid" loop="loop" title="Title" muted>
+        <source src="~/img/vids/video_cnc1.mp4" type="video/mp4" />
+    </video>
+</div>
+<div class="container p-0">
+    <div class="text-center">
+        <h2 class="backColor">3D PIT</h2>
+        <h3>
+            <span>¡Tú imaginación es el límite!</span>
+        </h3>
+        <div></div>
+        <div>
+            <p class="text-justify">
+                Ofrecemos a nuestros clientes nuestra experiencia en el uso del corte y grabado laser con el añadido de una amplia experiencia en el mundo del diseño,
+                el arte y la decoración, lo que les permitirá desarrollar de manera óptima sus trabajos, con la mayor precisión, en el menor tiempo y con el resultado esperado.
+            </p>
+            <p class="text-justify">
+                También si tienes un proyecto a desarrollar, un prototipo o maqueta o simplemente un idea genial, nosotros te ayudaremos a hacerlo real.
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        //Expandir Categorias
+        $("#btnCategories").click(function () {
+
+            if (window.matchMedia("(max-width:767px)").matches) {
+
+                $("#btnCategories").after($("#categories").slideToggle("fast"))
+
+            } else {
+
+                $("#header").after($("#categories").slideToggle("fast"))
+
+            }
+
+
+        })
+    </script>
+}
