@@ -94,17 +94,15 @@ header #categories hr {
 /*Video banner*/
 #bgvid {
     position: relative;
-    right: 0;
-    bottom: 0;
+    margin-left:150px;
     min-width: 50%;
     min-height: 50%;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+    width: 75%;
+    height: 75%;
 }
 
 .banner {
-    padding-top: 20px;
+    padding-top: 0px;
 }
 
 /*Estilos Productos GRID*/
@@ -193,4 +191,9 @@ header #categories hr {
 
 .fontSize {
     font-size: 11px;
+}
+
+/* Estilos Form checkout*/
+.checkoutForm {
+    line-height: 1pt !important;
 }

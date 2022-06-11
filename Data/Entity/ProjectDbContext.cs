@@ -20,6 +20,8 @@ namespace ProjectoAvance1.Data
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Contacto> Contactos { get; set; }
+        public DbSet<Venta> Ventas { get; set; }
+        public DbSet<VentaDetalle> VentaDetalles { get; set; }
 
 
 
@@ -81,7 +83,7 @@ namespace ProjectoAvance1.Data
                 {
                     Id = 3,
                     Codigo = "Keychain-1",
-                    Descripcion = "Lalveros personalizados",
+                    Descripcion = "Llaveros personalizados",
                     Foto = "/img/productos/1/3.jpg",
                     IdCategoria = 1,
                     Precio = 5,

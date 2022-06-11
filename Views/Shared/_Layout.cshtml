@@ -60,7 +60,7 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
-<script  type="text/javascript">
+<script type="text/javascript">
 		// Mensajes de error
 		var mensaje = '@TempData["Mensaje"]';
 			if (mensaje != '')
@@ -78,5 +78,11 @@
 				title: mensajeError,
 				showConfirmButton: false,
 				timer: 1500
-			})
+            })
+
+		var mensajeCarrito = '@TempData["Carrito"]';
+        if (mensajeCarrito == 'Borrar Carrito')
+        {
+            localStorage.removeItem('listaCarrito');
+        }
 </script>
