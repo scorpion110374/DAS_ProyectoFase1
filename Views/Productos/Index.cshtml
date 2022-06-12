@@ -87,18 +87,6 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-sm-6 col-xs-12 organizeProducts text-right">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default btnGrid backColor" id="btnGrid0">
-                        <i class="fa fa-th" aria-hidden="true"></i>
-                        <span class="col-xs-0 text-right"> GRID</span>
-                    </button>
-                    <button type="button" class="btn btn-default btnList" id="btnList0">
-                        <i class="fa fa-list" aria-hidden="true"></i>
-                        <span class="col-xs-0 text-right"> LIST</span>
-                    </button>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -172,61 +160,6 @@
                                 </div>
 
                             </div>
-                        </li>
-                    }
-                </ul>
-                <ul class="list0" style="display:none">
-                    @foreach (var producto in ViewBag.Productos)
-                    {
-                        <li class="col-xs-12">
-                            <!-- ============================================ -->
-                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
-                                <figure>
-                                    <a href="#" class="pixelProduct">
-                                        <img src="@producto.Foto" class="img-fluid">
-                                    </a>
-                                </figure>
-                            </div>
-                            <!-- ============================================ -->
-                            <div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
-                                <h1>
-                                    <small>
-                                        <a href="#" class="pixelProduct">@producto.Codigo</a><br>
-                                        @if (producto.Nuevo != 0)
-                                        {
-                                            <span class="label label-warning"> Nuevo </span>
-                                        }
-                                        @if (producto.Oferta != 0)
-                                        {
-                                            <span class="label label-warning">@producto.Descuento % OFF</span>
-                                        }
-                                    </small>
-                                </h1>
-                                <p class="text-muted"> @producto.Descripcion</p>
-                                @if (producto.Precio == 0)
-                                {
-                                    <h2><small>GRATIS</small></h2>
-                                }
-                                else
-                                {
-                                    if (producto.Oferta != 0)
-                                    {
-                                        <h2>
-                                            <small>
-                                                <strong class="offer"> USD $ @producto.Precio </strong>
-                                            </small>
-                                            <small>$ @producto.PrecioOferta </small>
-                                        </h2>
-                                    }
-                                    else
-                                    {
-                                        <h2>
-                                            <small>USD $ @producto.Precio</small>
-                                        </h2>
-                                    }
-                                }
-                            </div>
-                            <div class="col-xs-12"><hr></div>
                         </li>
                     }
                 </ul>

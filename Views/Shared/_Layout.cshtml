@@ -29,9 +29,10 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Productos" asp-action="Index">Productos</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contacto" asp-action="Contacto">Contactenos</a>
-                        </li>
+                        <partial name="_LoginAdminPartial.cshtml">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Contacto" asp-action="Contacto">Contactenos</a>
+                            </li>
                     </ul>
                     <partial name="_LoginPartial.cshtml">
                 </div>
@@ -56,7 +57,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>

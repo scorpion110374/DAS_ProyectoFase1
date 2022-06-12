@@ -17,5 +17,8 @@ namespace ProjectoAvance1.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string LastName { get; set; }
+        [PersonalData]
+        [Column(TypeName = "nvarchar(15)")]
+        public string UserRole { get; set; }
     }
 }

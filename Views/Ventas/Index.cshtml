@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ProjectoAvance1.Models.Venta>
+
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+
+@{
+    ViewData["Title"] = "Ventas";
+}
+
+<div class="container px-3 my-5 clearfix">
+    <div class="row">
+        <table class="table table-sm table-hover table-striped table-bordered">
+            <thead class="text-center">
+                <tr>
+                    <th>Id</th>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>País</th>
+                    <th>Ciudad/Departamento</th>
+                    <th>Tipo de Pago</th>
+                    <th>Valor</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in ViewBag.Ventas)
+                {
+                    <tr class="no-wrap">
+                        <td>@item.Id</td>
+                        <td>@item.Fecha.ToString("dd MMM yyyy")</td>
+                        <td>@item.Nombre @item.Apellido</td>
+                        <td>@item.Email</td>
+                        <td>@item.Telefono</td>
+                        <td>@item.Pais</td>
+                        <td>@item.Departamento</td>
+                        <td>@item.TipoPago</td>
+                        <td>$@item.Valor</td>
+                        <td>
+                            <a class="btn btn-sm btn-primary" href="#"><i class="fa-solid fa-list-ol"></i></a>
+                            <a class="btn btn-sm btn-secondary" href="#"><i class="fa-solid fa-pencil"></i></a>
+                            <a class="btn btn-sm btn-danger" href="#"><i class="fa-solid fa-trash-can"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="paginationDiv fondoContainer">
+    @Html.PagedListPager((IPagedList)ViewBag.Ventas, page => Url.Action("Index", new { page = page }),
+    new X.PagedList.Mvc.Common.PagedListRenderOptions
+    {
+        DisplayItemSliceAndTotal = true,
+        ContainerDivClasses = new[] { "page-item" },
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" },
+    })
+</div>
+
+@section Scripts {
+    <script>
+        //Corregir error en estilos de paginacion
+        $(document).ready(function () {
+            $('ul.pagination > li.disabled > a').addClass('page-link');
+        })
+    </script>
+}

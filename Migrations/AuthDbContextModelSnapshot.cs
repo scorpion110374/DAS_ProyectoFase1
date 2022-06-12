@@ -212,6 +212,9 @@ namespace ProjectoAvance1.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("UserRole")
+                        .HasColumnType("nvarchar(15)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -223,45 +226,6 @@ namespace ProjectoAvance1.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("ProjectoAvance1.Models.Categoria", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("NombreCategoria")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categoria");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            NombreCategoria = "Corte y Grabado Laser"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            NombreCategoria = "Lamparas Led"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            NombreCategoria = "Corte y Grabado CNC"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            NombreCategoria = "Rompecabezas"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
